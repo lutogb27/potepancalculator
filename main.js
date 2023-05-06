@@ -59,6 +59,31 @@
 //    state = 'calculation'//数字を入力している状態にする。
   }) //clicks
   
+  // 00の数字ボタンを押した時
+  const twozero = document.getElementById('twozero');
+  twozero.addEventListener('click', () => {
+//    - 最初state==='start
+//    - 計算終了後state==='finish'
+//    - 演算記号入力直後state==='calBtn'の時、
+//    前の文字が0の時は0が入力できないようにする。
+  if(state==='start'||state==='finish'||state==='calBtn'){
+      if(output_sub.textContent.slice(-1) === '0') {
+        //sliceで切り出されたのは0ではなく'0'
+        console.log('前の文字はゼロ');
+        return;
+      }
+    }
+
+    if(state==='start') {
+      total = twozero.dataset.indexId;  
+    }else{
+      total += twozero.dataset.indexId;
+    }      
+    output_sub.textContent = total;
+    changeOutput()//計算結果・計算過程画面の入れ替える
+//    state = 'calculation'//数字を入力している状態にする。
+  }) //clicks
+  
   // 「.」小数点ボタンを押した時
   const point = document.getElementById('point');
   point.addEventListener('click', () => {
